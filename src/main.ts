@@ -39,6 +39,21 @@ function enableDocs(app: NestExpressApplication) {
   SwaggerModule.setup('docs', app, document, customOptions);
 }
 
+function enableCors(app: NestExpressApplication) {
+  app.enableCors();
+}
+
+function secureApp(app: NestExpressApplication) {
+  app.getHttpAdapter().getInstance().disable('x-powered-by');
+
+  app.use((_req: Request, res: Response, next) => {
+    res.headers.set('Server', name + 'server');
+    next();
+  });
+
+  app.set('trust proxy', 1);
+}
+
 async function bootstrap() {
   Logger.log(`Start api application: ${name}:${version}`);
 
@@ -50,6 +65,9 @@ async function bootstrap() {
   if (NODE_ENV === 'development' || NODE_ENV === 'test') {
     enableDocs(app);
   }
+
+  enableCors(app);
+  secureApp(app);
 
   await startServerHttp(app);
 }

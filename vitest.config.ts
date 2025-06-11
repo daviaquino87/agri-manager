@@ -1,30 +1,14 @@
-/// <reference types="vitest" />
-import { defineConfig } from 'vitest/config'
-import { resolve } from 'path'
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
 
-export default defineConfig({
-  test: {
-    globals: true,
-    environment: 'node',
-    include: ['src/**/*.spec.ts'],
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        'dist/',
-        'coverage/',
-        '**/*.d.ts',
-        'test/',
-        '**/*.test.ts',
-        '**/*.config.ts',
-        '**/types.ts',
-      ],
+export default defineConfig(async () => {
+  const tsconfigPaths = (await import('vite-tsconfig-paths')).default;
+
+  return {
+    plugins: [tsconfigPaths()],
+    test: {
+      globals: true,
+      environment: 'node',
     },
-  },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, './src'),
-    },
-  },
-}) 
+  };
+});
