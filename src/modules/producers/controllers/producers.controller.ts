@@ -4,6 +4,7 @@ import { CreateProducerDTO } from '../dtos/create-producer.dto';
 import { ApiOperation } from '@nestjs/swagger';
 import { UpdateProducerDTO } from '../dtos/update-producer.dto';
 import { UpdateProducerUseCase } from '../use-cases/update-producer/update-producer.usecase';
+import { ProducerOutputDTO } from '../dtos/producer-output.dto';
 
 @Controller('producers')
 export class ProducersController {
@@ -14,10 +15,14 @@ export class ProducersController {
 
   @Post()
   @ApiOperation({ summary: 'Cria um produtor' })
-  async create(@Body() createProducerDto: CreateProducerDTO): Promise<void> {
-    await this.createProducerUseCase.execute({
+  async create(
+    @Body() createProducerDto: CreateProducerDTO,
+  ): Promise<ProducerOutputDTO> {
+    const { producer } = await this.createProducerUseCase.execute({
       createProducerDto,
     });
+
+    return ProducerOutputDTO.toHttp(producer);
   }
 
   @Put(':id')
@@ -25,10 +30,12 @@ export class ProducersController {
   async update(
     @Param('id') id: string,
     @Body() updateProducerDto: UpdateProducerDTO,
-  ): Promise<void> {
-    await this.updateProducerUseCase.execute({
+  ): Promise<ProducerOutputDTO> {
+    const { producer } = await this.updateProducerUseCase.execute({
       id,
       updateProducerDto,
     });
+
+    return ProducerOutputDTO.toHttp(producer);
   }
 }

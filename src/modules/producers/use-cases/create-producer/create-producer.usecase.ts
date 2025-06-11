@@ -10,16 +10,21 @@ import { randomUUID } from 'node:crypto';
 import { validateDTO } from '@/common/utils/validateDto';
 import { Prisma } from '@prisma/client';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
+import { IProducer } from '../../entities/producer.entity';
 
 interface IExecuteInput {
   createProducerDto: CreateProducerDTO;
+}
+
+interface IExecuteOutput {
+  producer: IProducer;
 }
 
 @Injectable()
 export class CreateProducerUseCase {
   constructor(private readonly producerRepository: ProducerRepository) {}
 
-  async execute({ createProducerDto }: IExecuteInput): Promise<void> {
+  async execute({ createProducerDto }: IExecuteInput): Promise<IExecuteOutput> {
     try {
       const { dtoValidated, error } = await validateDTO(
         CreateProducerDTO,
@@ -30,11 +35,13 @@ export class CreateProducerUseCase {
         throw new BadRequestException(error);
       }
 
-      await this.producerRepository.create({
+      const producer = await this.producerRepository.create({
         id: randomUUID(),
         name: dtoValidated!.name,
         document: dtoValidated!.document,
       });
+
+      return { producer };
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === PRISMA_ERRORS.UNIQUE_CONSTRAINT_FAILED) {

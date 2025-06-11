@@ -10,17 +10,25 @@ import { ProducerRepository } from '../../repositories/producer.repository';
 import { validateDTO } from '@/common/utils/validateDto';
 import { Prisma } from '@prisma/client';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
+import { IProducer } from '../../entities/producer.entity';
 
 interface IExecuteInput {
   id: string;
   updateProducerDto: UpdateProducerDTO;
 }
 
+interface IExecuteOutput {
+  producer: IProducer;
+}
+
 @Injectable()
 export class UpdateProducerUseCase {
   constructor(private readonly producerRepository: ProducerRepository) {}
 
-  async execute({ id, updateProducerDto }: IExecuteInput): Promise<void> {
+  async execute({
+    id,
+    updateProducerDto,
+  }: IExecuteInput): Promise<IExecuteOutput> {
     try {
       const { dtoValidated, error } = await validateDTO(
         UpdateProducerDTO,
@@ -31,7 +39,9 @@ export class UpdateProducerUseCase {
         throw new BadRequestException(error);
       }
 
-      await this.producerRepository.update(id, dtoValidated!);
+      const producer = await this.producerRepository.update(id, dtoValidated!);
+
+      return { producer };
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === PRISMA_ERRORS.UNIQUE_CONSTRAINT_FAILED) {
@@ -51,4 +61,4 @@ export class UpdateProducerUseCase {
       throw new BadRequestException('Erro ao atualizar produtor');
     }
   }
-} 
+}
