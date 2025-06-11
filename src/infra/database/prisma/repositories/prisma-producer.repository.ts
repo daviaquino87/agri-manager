@@ -70,4 +70,14 @@ export class PrismaProducerRepository implements ProducerRepository {
       },
     });
   }
+
+  async delete(id: string, txn?: Prisma.TransactionClient): Promise<void> {
+    const connection = txn ?? this.prismaService;
+
+    await connection.producer.delete({
+      where: {
+        id,
+      },
+    });
+  }
 }
