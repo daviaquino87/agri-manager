@@ -3,6 +3,9 @@ import { ProducerRepository } from '@/modules/producers/repositories/producer.re
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { Prisma } from '@prisma/client';
+import { GetProducersParamsDTO } from '@/modules/producers/dtos/get-producers-params.dto';
+import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
+import { createPaginator } from '../utils/prisma-paginate';
 
 @Injectable()
 export class PrismaProducerRepository implements ProducerRepository {
@@ -39,5 +42,24 @@ export class PrismaProducerRepository implements ProducerRepository {
         document: updateProducerDto.document,
       },
     });
+  }
+
+  async findAll({
+    page,
+    perPage,
+  }: GetProducersParamsDTO): Promise<PaginatedOutputDTO<IProducer>> {
+    const paginate = createPaginator({ perPage });
+
+    return paginate<IProducer, Prisma.ProducerFindManyArgs>(
+      this.prismaService.producer,
+      {
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
+      {
+        page,
+      },
+    );
   }
 }
