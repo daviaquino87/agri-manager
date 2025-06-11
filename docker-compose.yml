@@ -1,0 +1,27 @@
+version: '3.7'
+
+volumes:
+  agri-manager-db-data:
+    driver: local
+
+networks:
+  agri-manager-network:
+
+services: 
+ agri-manager-db:    
+    container_name: agri-manager-db 
+    image: bitnami/postgresql
+    networks:
+      - agri-manager-network
+    volumes:
+      - agri-manager-db-data:/bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=agri_manager_user
+      - POSTGRESQL_PASSWORD=agri_manager_pass
+      - POSTGRESQL_DATABASE=agri_manager
+
+  
+
+  

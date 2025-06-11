@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Producer {
+  id        String   @id
+  name      String
+  document  String   @unique
+  farms     Farm[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("producer")
+}
+
+model Farm {
+  id              String        @id
+  name            String
+  city            String
+  state           String
+  totalArea       Float
+  agricultureArea Float         @map("agriculture_area")
+  vegetationArea  Float         @map("vegetation_area")
+  producerId      String        @map("producer_id")
+  producer        Producer      @relation(fields: [producerId], references: [id])
+  farmCultures    FarmCulture[]
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+
+  @@map("farm")
+}
+
+model Crop {
+  id           String        @id
+  name         String
+  farmCultures FarmCulture[]
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+
+  @@map("crop")
+}
+
+model Harvest {
+  id           String        @id
+  year         Int
+  farmCultures FarmCulture[]
+  createdAt    DateTime      @default(now()) @map("created_at")
+
+  @@map("harvest")
+}
+
+model FarmCulture {
+  id        String @id
+  farmId    String @map("farm_id")
+  cropId    String @map("crop_id")
+  harvestId String @map("harvest_id")
+
+  farm    Farm    @relation(fields: [farmId], references: [id])
+  crop    Crop    @relation(fields: [cropId], references: [id])
+  harvest Harvest @relation(fields: [harvestId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([farmId, cropId, harvestId])
+  @@map("farm_culture")
+}
