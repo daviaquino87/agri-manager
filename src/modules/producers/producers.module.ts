@@ -3,6 +3,7 @@ import { CreateProducerUseCase } from './use-cases/create-producer/create-produc
 import { ProducersController } from './controllers/producers.controller';
 import { UpdateProducerUseCase } from './use-cases/update-producer/update-producer.usecase';
 import { GetAllProducersUseCase } from './use-cases/get-all-producers/get-all-producers.usecase';
+import { FindProducerByIdUseCase } from './use-cases/find-producer-by-id/find-producer-by-id.usecase';
 
 @Module({
   imports: [],
@@ -11,6 +12,7 @@ import { GetAllProducersUseCase } from './use-cases/get-all-producers/get-all-pr
     CreateProducerUseCase,
     UpdateProducerUseCase,
     GetAllProducersUseCase,
+    FindProducerByIdUseCase,
   ],
   exports: [],
 })

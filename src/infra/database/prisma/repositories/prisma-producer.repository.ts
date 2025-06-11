@@ -62,4 +62,12 @@ export class PrismaProducerRepository implements ProducerRepository {
       },
     );
   }
+
+  async findById(id: string): Promise<IProducer | null> {
+    return this.prismaService.producer.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
 }

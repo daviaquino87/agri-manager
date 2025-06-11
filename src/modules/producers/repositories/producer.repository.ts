@@ -12,4 +12,5 @@ export abstract class ProducerRepository {
   abstract findAll(
     params: GetProducersParamsDTO,
   ): Promise<PaginatedOutputDTO<IProducer>>;
+  abstract findById(id: string): Promise<IProducer | null>;
 }

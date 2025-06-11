@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Patch,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { CreateProducerUseCase } from '../use-cases/create-producer/create-producer.usecase';
 import { CreateProducerDTO } from '../dtos/create-producer.dto';
 import { ApiOperation } from '@nestjs/swagger';
@@ -17,6 +9,8 @@ import { ProducerOutputDTO } from '../dtos/producer-output.dto';
 import { GetProducersParamsDTO } from '../dtos/get-producers-params.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 import { ApiPaginatedResponse } from '@/common/decorators/api-paginated-response.decorator';
+import { FindProducerByIdUseCase } from '../use-cases/find-producer-by-id/find-producer-by-id.usecase';
+import { IProducer } from '../entities/producer.entity';
 
 @Controller('producers')
 export class ProducersController {
@@ -24,6 +18,7 @@ export class ProducersController {
     private createProducerUseCase: CreateProducerUseCase,
     private updateProducerUseCase: UpdateProducerUseCase,
     private getAllProducersUseCase: GetAllProducersUseCase,
+    private findProducerByIdUseCase: FindProducerByIdUseCase,
   ) {}
 
   @Post()
@@ -38,7 +33,7 @@ export class ProducersController {
     return ProducerOutputDTO.toHttp(producer);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOperation({ summary: 'Atualiza um produtor' })
   async update(
     @Param('id') id: string,
@@ -69,5 +64,11 @@ export class ProducersController {
       data: producers.data.map(ProducerOutputDTO.toHttp),
       meta: producers.meta,
     };
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Busca um produtor por ID' })
+  async findById(@Param('id') id: string): Promise<IProducer> {
+    return this.findProducerByIdUseCase.execute({ id });
   }
 }
