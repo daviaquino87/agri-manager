@@ -15,7 +15,7 @@ model Producer {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("producer")
+  @@map("producers")
 }
 
 model Farm {
@@ -23,16 +23,16 @@ model Farm {
   name            String
   city            String
   state           String
-  totalArea       Float
-  agricultureArea Float         @map("agriculture_area")
-  vegetationArea  Float         @map("vegetation_area")
+  totalAreaInHectares       Float @map("total_area_in_hectares")
+  agricultureAreaInHectares Float         @map("agriculture_area_in_hectares")
+  vegetationAreaInHectares  Float         @map("vegetation_area_in_hectares")
   producerId      String        @map("producer_id")
   producer        Producer      @relation(fields: [producerId], references: [id])
   farmCultures    FarmCulture[]
   createdAt       DateTime      @default(now()) @map("created_at")
   updatedAt       DateTime      @updatedAt @map("updated_at")
 
-  @@map("farm")
+  @@map("farms")
 }
 
 model Crop {
@@ -42,7 +42,7 @@ model Crop {
   createdAt    DateTime      @default(now()) @map("created_at")
   updatedAt    DateTime      @updatedAt @map("updated_at")
 
-  @@map("crop")
+  @@map("crops")
 }
 
 model Harvest {
@@ -51,7 +51,7 @@ model Harvest {
   farmCultures FarmCulture[]
   createdAt    DateTime      @default(now()) @map("created_at")
 
-  @@map("harvest")
+  @@map("harvests")
 }
 
 model FarmCulture {
