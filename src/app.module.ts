@@ -4,6 +4,7 @@ import { DatabaseModule } from '@/infra/database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './infra/env/env-schema';
 import { ProducersModule } from './modules/producers/producers.module';
+import { FarmModule } from './modules/farms/farm.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ProducersModule } from './modules/producers/producers.module';
     EnvModule,
     DatabaseModule,
     ProducersModule,
+    FarmModule,
   ],
   controllers: [],
   providers: [],
