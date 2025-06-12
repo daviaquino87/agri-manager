@@ -6,11 +6,15 @@ interface IExecuteInput {
   id: string;
 }
 
+interface IExecuteOutput {
+  producer: IProducer;
+}
+
 @Injectable()
-export class FindProducerByIdUseCase {
+export class GetProducerByIdUseCase {
   constructor(private readonly producerRepository: ProducerRepository) {}
 
-  async execute({ id }: IExecuteInput): Promise<IProducer> {
+  async execute({ id }: IExecuteInput): Promise<IExecuteOutput> {
     if (!id) {
       throw new NotFoundException('Produtor nao encontrado');
     }
@@ -21,6 +25,6 @@ export class FindProducerByIdUseCase {
       throw new NotFoundException('Produtor não encontrado');
     }
 
-    return producer;
+    return { producer };
   }
 }

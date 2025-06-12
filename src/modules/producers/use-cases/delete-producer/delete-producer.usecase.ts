@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { ProducerRepository } from '../../repositories/producer.repository';
 import { Prisma } from '@prisma/client';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
@@ -25,7 +30,11 @@ export class DeleteProducerUseCase {
         }
       }
 
-      throw error;
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      throw new BadRequestException('Erro ao deletar produtor');
     }
   }
-} 
+}
