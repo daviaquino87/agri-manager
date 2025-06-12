@@ -10,6 +10,7 @@ import {
   SwaggerCustomOptions,
   SwaggerModule,
 } from '@nestjs/swagger';
+import { NextFunction, Response } from 'express';
 
 const packageJson = readFileSync('package.json', 'utf-8');
 const { version, name, description } = JSON.parse(packageJson);
@@ -43,11 +44,11 @@ function enableCors(app: NestExpressApplication) {
   app.enableCors();
 }
 
-function secureApp(app: NestExpressApplication) {
+export function secureApp(app: NestExpressApplication): void {
   app.getHttpAdapter().getInstance().disable('x-powered-by');
 
-  app.use((_req: Request, res: Response, next) => {
-    res.headers.set('Server', name + 'server');
+  app.use((_: Request, res: Response, next: NextFunction) => {
+    res.setHeader('Server', `${name}-server`);
     next();
   });
 
