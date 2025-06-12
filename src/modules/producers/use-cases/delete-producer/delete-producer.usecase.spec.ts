@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { DeleteProducerUseCase } from './delete-producer.usecase'
 import { ProducerRepository } from '../../repositories/producer.repository'
-import { NotFoundException } from '@nestjs/common'
+import { NotFoundException, BadRequestException } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros'
 
@@ -44,6 +44,8 @@ describe('DeleteProducerUseCase', () => {
     const error = new Error('Database error')
     vi.spyOn(producerRepository, 'delete').mockRejectedValue(error)
 
-    await expect(useCase.execute({ id: '123' })).rejects.toThrow(error)
+    await expect(useCase.execute({ id: '123' })).rejects.toThrow(
+      BadRequestException
+    )
   })
 }) 

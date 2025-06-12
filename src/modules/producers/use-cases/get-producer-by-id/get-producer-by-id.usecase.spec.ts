@@ -26,7 +26,7 @@ describe('GetProducerByIdUseCase', () => {
 
     const result = await useCase.execute({ id: '123' });
 
-    expect(result).toEqual(mockProducer);
+    expect(result).toEqual({ producer: mockProducer });
     expect(producerRepository.findById).toHaveBeenCalledWith('123');
   });
 
