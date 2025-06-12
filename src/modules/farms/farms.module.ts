@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { FarmController } from './controllers/farm.controller';
+import { FarmsController } from './controllers/farms.controller';
 import { CreateFarmUseCase } from './use-cases/create-farm/create-farm.use-case';
 import { UpdateFarmUseCase } from './use-cases/update-farm/update-farm.use-case';
 import { GetAllFarmsUseCase } from './use-cases/get-all-farms/get-all-farms.use-case';
@@ -10,7 +10,7 @@ import { PrismaFarmRepository } from '@/infra/database/prisma/repositories/prism
 
 @Module({
   imports: [],
-  controllers: [FarmController],
+  controllers: [FarmsController],
   providers: [
     CreateFarmUseCase,
     UpdateFarmUseCase,
@@ -24,4 +24,4 @@ import { PrismaFarmRepository } from '@/infra/database/prisma/repositories/prism
   ],
   exports: [],
 })
-export class FarmModule {}
+export class FarmsModule {}

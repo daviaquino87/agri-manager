@@ -22,7 +22,7 @@ import { ApiOperation } from '@nestjs/swagger';
 import { ApiPaginatedResponse } from '@/common/decorators/api-paginated-response.decorator';
 
 @Controller('crops')
-export class CropController {
+export class CropsController {
   constructor(
     private readonly createCropUseCase: CreateCropUseCase,
     private readonly updateCropUseCase: UpdateCropUseCase,

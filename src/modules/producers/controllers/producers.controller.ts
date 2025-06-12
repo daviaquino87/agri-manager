@@ -20,7 +20,6 @@ import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 import { ApiPaginatedResponse } from '@/common/decorators/api-paginated-response.decorator';
 import { GetProducerByIdUseCase } from '../use-cases/get-producer-by-id/get-producer-by-id.usecase';
 import { DeleteProducerUseCase } from '../use-cases/delete-producer/delete-producer.usecase';
-import { IProducer } from '../entities/producer.entity';
 
 @Controller('producers')
 export class ProducersController {
