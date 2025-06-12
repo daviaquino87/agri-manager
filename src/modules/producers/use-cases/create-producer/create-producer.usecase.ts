@@ -55,7 +55,7 @@ export class CreateProducerUseCase {
         throw error;
       }
 
-      throw new BadRequestException('Erro ao criar produtor');
+      throw new BadRequestException('erro ao criar produtor');
     }
   }
 }

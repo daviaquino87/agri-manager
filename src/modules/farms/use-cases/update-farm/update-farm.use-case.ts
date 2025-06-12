@@ -1,10 +1,16 @@
-import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { FarmRepository } from '../../repositories/farm.repository';
 import { IFarm } from '../../entities/farm.entity';
 import { validateDTO } from '@/common/utils/validateDto';
 import { UpdateFarmDTO } from '../../dtos/update-farm.dto';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
 import { Prisma } from '@prisma/client';
+import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
 
 interface IExecuteInput {
   id: string;
@@ -17,7 +23,32 @@ interface IExecuteOutput {
 
 @Injectable()
 export class UpdateFarmUseCase {
-  constructor(private readonly farmRepository: FarmRepository) {}
+  constructor(
+    private readonly farmRepository: FarmRepository,
+    private readonly producerRepository: ProducerRepository,
+  ) {}
+
+  private ensureFarmAreaIsValid(createFarmDto: UpdateFarmDTO) {
+    if (
+      createFarmDto.totalAreaInHectares !==
+      createFarmDto.agricultureAreaInHectares +
+        createFarmDto.vegetationAreaInHectares
+    ) {
+      throw new BadRequestException(
+        'erro ao criar fazenda: A area total da fazenda deve ser igual a soma das areas de agricultura e vegetacao',
+      );
+    }
+  }
+
+  private async ensureProducerIsValid(producerId: string) {
+    const producer = await this.producerRepository.findById(producerId);
+
+    if (!producer) {
+      throw new BadRequestException(
+        'erro ao criar fazenda: O produtor informado nao existe',
+      );
+    }
+  }
 
   async execute({ id, updateFarmDto }: IExecuteInput): Promise<IExecuteOutput> {
     try {
@@ -30,13 +61,18 @@ export class UpdateFarmUseCase {
         throw new BadRequestException(error);
       }
 
+      this.ensureFarmAreaIsValid(dtoValidated!);
+      await this.ensureProducerIsValid(dtoValidated!.producerId);
+
       const farm = await this.farmRepository.update(id, dtoValidated!);
 
       return { farm };
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === PRISMA_ERRORS.RECORD_NOT_FOUND) {
-          throw new BadRequestException('Fazenda nao encontrada');
+          throw new NotFoundException(
+            'erro ao atualizar fazenda: Fazenda nao encontrada',
+          );
         }
       }
 
@@ -44,7 +80,7 @@ export class UpdateFarmUseCase {
         throw error;
       }
 
-      throw new BadRequestException('Erro ao atualizar fazenda');
+      throw new BadRequestException('erro ao atualizar fazenda');
     }
   }
 }

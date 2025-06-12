@@ -18,7 +18,9 @@ export class DeleteProducerUseCase {
 
   async execute({ id }: IExecuteInput): Promise<void> {
     if (!id) {
-      throw new NotFoundException('Produtor não encontrado');
+      throw new NotFoundException(
+        'erro ao deletar produtor: Produtor não encontrado',
+      );
     }
 
     try {
@@ -26,7 +28,9 @@ export class DeleteProducerUseCase {
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === PRISMA_ERRORS.RECORD_NOT_FOUND) {
-          throw new NotFoundException('Produtor não encontrado');
+          throw new NotFoundException(
+            'erro ao deletar produtor: Produtor não encontrado',
+          );
         }
       }
 
@@ -34,7 +38,7 @@ export class DeleteProducerUseCase {
         throw error;
       }
 
-      throw new BadRequestException('Erro ao deletar produtor');
+      throw new BadRequestException('erro ao deletar produtor');
     }
   }
 }

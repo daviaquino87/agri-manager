@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { ProducerRepository } from '../../repositories/producer.repository';
 import { IProducer } from '../../entities/producer.entity';
 
@@ -16,13 +20,17 @@ export class GetProducerByIdUseCase {
 
   async execute({ id }: IExecuteInput): Promise<IExecuteOutput> {
     if (!id) {
-      throw new NotFoundException('Produtor nao encontrado');
+      throw new BadRequestException(
+        'erro ao buscar produtor: O campo id deve ser preenchido',
+      );
     }
 
     const producer = await this.producerRepository.findById(id);
 
     if (!producer) {
-      throw new NotFoundException('Produtor não encontrado');
+      throw new NotFoundException(
+        'erro ao buscar produtor: Produtor não encontrado',
+      );
     }
 
     return { producer };

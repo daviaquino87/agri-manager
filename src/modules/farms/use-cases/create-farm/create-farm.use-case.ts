@@ -28,7 +28,7 @@ export class CreateFarmUseCase {
         createFarmDto.vegetationAreaInHectares
     ) {
       throw new BadRequestException(
-        'A area total da fazenda deve ser igual a soma das areas de agricultura e vegetacao',
+        'erro ao criar fazenda: A area total da fazenda deve ser igual a soma das areas de agricultura e vegetacao',
       );
     }
   }
@@ -37,7 +37,9 @@ export class CreateFarmUseCase {
     const producer = await this.producerRepository.findById(producerId);
 
     if (!producer) {
-      throw new BadRequestException('O produtor informado nao existe');
+      throw new BadRequestException(
+        'erro ao criar fazenda: O produtor informado nao existe',
+      );
     }
   }
 

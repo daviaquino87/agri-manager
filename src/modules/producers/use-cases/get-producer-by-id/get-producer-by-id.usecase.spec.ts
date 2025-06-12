@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { GetProducerByIdUseCase } from './get-producer-by-id.usecase';
 import { ProducerRepository } from '../../repositories/producer.repository';
-import { NotFoundException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('GetProducerByIdUseCase', () => {
   let useCase: GetProducerByIdUseCase;
@@ -30,9 +30,9 @@ describe('GetProducerByIdUseCase', () => {
     expect(producerRepository.findById).toHaveBeenCalledWith('123');
   });
 
-  it('should throw NotFoundException when id is not provided', async () => {
+  it('should throw BadRequestException when id is not provided', async () => {
     await expect(useCase.execute({ id: '' })).rejects.toThrow(
-      NotFoundException,
+      BadRequestException,
     );
   });
 

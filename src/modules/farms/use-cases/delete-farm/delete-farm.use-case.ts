@@ -19,14 +19,18 @@ export class DeleteFarmUseCase {
   async execute({ id }: IExecuteInput): Promise<void> {
     try {
       if (!id) {
-        throw new BadRequestException('o campo id deve ser preenchido');
+        throw new BadRequestException(
+          'erro ao deletar fazenda: o campo id deve ser preenchido',
+        );
       }
 
       await this.farmRepository.delete(id);
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === PRISMA_ERRORS.RECORD_NOT_FOUND) {
-          throw new NotFoundException('Fazenda nao encontrada');
+          throw new NotFoundException(
+            'erro ao deletar fazenda: Fazenda nao encontrada',
+          );
         }
       }
 
@@ -34,7 +38,7 @@ export class DeleteFarmUseCase {
         throw error;
       }
 
-      throw new BadRequestException('Erro ao deletar fazenda');
+      throw new BadRequestException('erro ao deletar fazenda');
     }
   }
 }

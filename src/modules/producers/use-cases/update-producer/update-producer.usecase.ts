@@ -50,7 +50,9 @@ export class UpdateProducerUseCase {
           );
         }
         if (error.code === PRISMA_ERRORS.RECORD_NOT_FOUND) {
-          throw new NotFoundException('Produtor não encontrado');
+          throw new NotFoundException(
+            'erro ao atualizar produtor: Produtor não encontrado',
+          );
         }
       }
 
@@ -58,7 +60,7 @@ export class UpdateProducerUseCase {
         throw error;
       }
 
-      throw new BadRequestException('Erro ao atualizar produtor');
+      throw new BadRequestException('erro ao atualizar produtor');
     }
   }
 }
