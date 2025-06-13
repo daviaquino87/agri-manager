@@ -9,6 +9,8 @@ import { CropRepository } from '@/modules/crops/repositories/crop.repository';
 import { PrismaCropRepository } from './prisma/repositories/prisma-crops.repository';
 import { HarvestRepository } from '@/modules/harvests/repositories/harvest.repository';
 import { PrismaHarvestsRepository } from './prisma/repositories/prisma-harvests.repository';
+import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
+import { PrismaFarmsCulturesRepository } from './prisma/repositories/prisma-farms-cultures.repository';
 
 @Global()
 @Module({
@@ -31,6 +33,10 @@ import { PrismaHarvestsRepository } from './prisma/repositories/prisma-harvests.
       provide: HarvestRepository,
       useClass: PrismaHarvestsRepository,
     },
+    {
+      provide: FarmCultureRepository,
+      useClass: PrismaFarmsCulturesRepository,
+    },
   ],
   exports: [
     PrismaService,
@@ -38,6 +44,7 @@ import { PrismaHarvestsRepository } from './prisma/repositories/prisma-harvests.
     FarmRepository,
     CropRepository,
     HarvestRepository,
+    FarmCultureRepository,
   ],
 })
 export class DatabaseModule {}

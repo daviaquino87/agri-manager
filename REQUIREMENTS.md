@@ -10,7 +10,7 @@
 [x] - RF05	Validar que a soma de áreas agricultável e vegetação não ultrapasse a área total da fazenda.
 [x] - RF06	Permitir a edição e exclusão de propriedades.
 [x] - RF07	Permitir o registro de culturas por propriedade, safra e nome da cultura.
-[] - RF08	Permitir o cadastro de novas safras (ex: 2021, 2022...).
+[x] - RF08	Permitir o cadastro de novas safras (ex: 2021, 2022...).
 [] - RF09	Permitir a consulta detalhada de produtores, com suas fazendas, safras e culturas.
 [] - RF10	Exibir dashboard com dados agregados:
     - Quantidade de fazendas
