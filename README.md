@@ -34,10 +34,19 @@ flowchart LR
 
 - Docker e Docker Compose
 
+
+### 🎲 Rodando o Backend
+
+
 ## Clone o repositório:
 ```bash
 git clone https://github.com/daviaquino87/agri-manager.git
 cd agri-manager
+```
+
+## Criar o arquivo .env e copiar as variáveis do .env.example
+```=shell
+cp ./.env.example ./.env
 ```
 
 ### Rodar aplicação e banco de dados
