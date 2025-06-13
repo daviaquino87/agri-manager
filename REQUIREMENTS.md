@@ -11,8 +11,8 @@
 [x] - RF06	Permitir a edição e exclusão de propriedades.
 [x] - RF07	Permitir o registro de culturas por propriedade, safra e nome da cultura.
 [x] - RF08	Permitir o cadastro de novas safras (ex: 2021, 2022...).
-[] - RF09	Permitir a consulta detalhada de produtores, com suas fazendas, safras e culturas.
-[] - RF10	Exibir dashboard com dados agregados:
+[x] - RF09	Permitir a consulta detalhada de produtores, com suas fazendas, safras e culturas.
+[x] - RF10	Exibir dashboard com dados agregados:
     - Quantidade de fazendas
     - Soma total de hectares
     - Gráficos de pizza por estado, por cultura, e por uso do solo.
