@@ -6,6 +6,7 @@ import { envSchema } from './infra/env/env-schema';
 import { ProducersModule } from './modules/producers/producers.module';
 import { FarmsModule } from './modules/farms/farms.module';
 import { CropsModule } from './modules/crops/crops.module';
+import { HarvestsModule } from './modules/harvests/harvests.modulo';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CropsModule } from './modules/crops/crops.module';
     ProducersModule,
     FarmsModule,
     CropsModule,
+    HarvestsModule,
   ],
   controllers: [],
   providers: [],
