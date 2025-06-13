@@ -1,4 +1,7 @@
-import { IProducer } from '@/modules/producers/entities/producer.entity';
+import {
+  IProducer,
+  ProducerWithRelations,
+} from '@/modules/producers/entities/producer.entity';
 import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
@@ -63,10 +66,22 @@ export class PrismaProducerRepository implements ProducerRepository {
     );
   }
 
-  async findById(id: string): Promise<IProducer | null> {
+  async findById(id: string): Promise<ProducerWithRelations> {
     return this.prismaService.producer.findUnique({
       where: {
         id,
+      },
+      include: {
+        farms: {
+          include: {
+            farmCultures: {
+              include: {
+                crop: true,
+                harvest: true,
+              },
+            },
+          },
+        },
       },
     });
   }

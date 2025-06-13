@@ -1,5 +1,5 @@
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { IProducer } from '../entities/producer.entity';
+import { IProducer, ProducerWithRelations } from '../entities/producer.entity';
 import { GetProducersParamsDTO } from '../dtos/get-producers-params.dto';
 
 export abstract class ProducerRepository {
@@ -12,6 +12,6 @@ export abstract class ProducerRepository {
   abstract findAll(
     params: GetProducersParamsDTO,
   ): Promise<PaginatedOutputDTO<IProducer>>;
-  abstract findById(id: string): Promise<IProducer | null>;
+  abstract findById(id: string): Promise<ProducerWithRelations>;
   abstract delete(id: string, txn?: any): Promise<void>;
 }

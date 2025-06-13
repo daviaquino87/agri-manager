@@ -20,6 +20,7 @@ import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 import { ApiPaginatedResponse } from '@/common/decorators/api-paginated-response.decorator';
 import { GetProducerByIdUseCase } from '../use-cases/get-producer-by-id/get-producer-by-id.usecase';
 import { DeleteProducerUseCase } from '../use-cases/delete-producer/delete-producer.usecase';
+import { ProducerDetailsOutputDTO } from '../dtos/producer-details.output.dto';
 
 @Controller('producers')
 export class ProducersController {
@@ -78,10 +79,10 @@ export class ProducersController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Busca um produtor por ID' })
-  async findById(@Param('id') id: string): Promise<ProducerOutputDTO> {
+  async findById(@Param('id') id: string): Promise<ProducerDetailsOutputDTO> {
     const { producer } = await this.getProducerByIdUseCase.execute({ id });
 
-    return ProducerOutputDTO.toHttp(producer);
+    return ProducerDetailsOutputDTO.toHttp(producer);
   }
 
   @Delete(':id')

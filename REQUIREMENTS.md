@@ -16,10 +16,10 @@
     - Quantidade de fazendas
     - Soma total de hectares
     - Gráficos de pizza por estado, por cultura, e por uso do solo.
-[] - RF11	Validar o formato e autenticidade de CPF/CNPJ (ex: com lib cpf-cnpj-validator).
-[] - RF12	Implementar logs estruturados para rastrear requisições e operações importantes.
-[] - RF13	Disponibilizar a documentação da API REST (OpenAPI/Swagger).
-[] - RF14	Implementar testes unitários e de integração para os módulos principais da aplicação.
+[x] - RF11	Validar o formato e autenticidade de CPF/CNPJ (ex: com lib cpf-cnpj-validator).
+[x] - RF12	Implementar logs estruturados para rastrear requisições e operações importantes.
+[x] - RF13	Disponibilizar a documentação da API REST (OpenAPI/Swagger).
+[x] - RF14	Implementar testes unitários e de integração para os módulos principais da aplicação.
 
 📌 Requisitos Não Funcionais (RNF)
 

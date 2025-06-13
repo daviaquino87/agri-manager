@@ -4,14 +4,17 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ProducerRepository } from '../../repositories/producer.repository';
-import { IProducer } from '../../entities/producer.entity';
+import {
+  IProducer,
+  ProducerWithRelations,
+} from '../../entities/producer.entity';
 
 interface IExecuteInput {
   id: string;
 }
 
 interface IExecuteOutput {
-  producer: IProducer;
+  producer: ProducerWithRelations;
 }
 
 @Injectable()
