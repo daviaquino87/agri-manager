@@ -27,6 +27,7 @@ function enableDocs(app: NestExpressApplication) {
     .setTitle(formatName)
     .setDescription(description)
     .setVersion('')
+    .addServer('/api/v1', 'API V1')
     .build();
 
   const customOptions: SwaggerCustomOptions = {
@@ -69,6 +70,8 @@ async function bootstrap() {
 
   enableCors(app);
   secureApp(app);
+
+  app.setGlobalPrefix('api/v1');
 
   await startServerHttp(app);
 }

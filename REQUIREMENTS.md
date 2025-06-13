@@ -36,5 +36,5 @@
 [] - RNF10	A aplicação deve incluir métricas básicas de observabilidade, como logs, erros e tempos de resposta.
 [] - RNF11	A aplicação deve ser documentada com README, e conter instruções de execução local, testes e deploy.
 [] - RNF12	O sistema deve permitir carga de dados em larga escala sem perda de performance, principalmente nos endpoints de dashboard e listagem.
-[] - RNF13	As rotas devem ser versionadas (/api/v1/) para garantir estabilidade em futuras atualizações.
+[x] - RNF13	As rotas devem ser versionadas (/api/v1/) para garantir estabilidade em futuras atualizações.
 
