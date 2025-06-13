@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { GetFarmCultureByIdUseCase } from './get-farm-culture-by-id.usecase';
-import { FarmCultureRepository } from '../../repositories/farm-culture.repository';
+import { GetFarmCultureByIdUseCase } from '@/modules/farms-cultures/use-cases/get-farm-culture-by-id/get-farm-culture-by-id.usecase';
+import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 
@@ -34,7 +34,9 @@ describe('GetFarmCultureByIdUseCase', () => {
       createdAt: new Date(),
     };
 
-    vi.mocked(farmCultureRepository.findById).mockResolvedValue(mockFarmCulture);
+    vi.mocked(farmCultureRepository.findById).mockResolvedValue(
+      mockFarmCulture,
+    );
 
     const result = await useCase.execute({ id });
 
@@ -43,7 +45,9 @@ describe('GetFarmCultureByIdUseCase', () => {
   });
 
   it('should throw BadRequestException when id is not provided', async () => {
-    await expect(useCase.execute({ id: '' })).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute({ id: '' })).rejects.toThrow(
+      BadRequestException,
+    );
     expect(farmCultureRepository.findById).not.toHaveBeenCalled();
   });
 
@@ -55,4 +59,4 @@ describe('GetFarmCultureByIdUseCase', () => {
     await expect(useCase.execute({ id })).rejects.toThrow(NotFoundException);
     expect(farmCultureRepository.findById).toHaveBeenCalledWith(id);
   });
-}); 
+});

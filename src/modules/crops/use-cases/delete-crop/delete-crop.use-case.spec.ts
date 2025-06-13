@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { DeleteCropUseCase } from './delete-crop.use-case';
-import { CropRepository } from '../../repositories/crop.repository';
+import { DeleteCropUseCase } from '@/modules/crops/use-cases/delete-crop/delete-crop.use-case';
+import { CropRepository } from '@/modules/crops/repositories/crop.repository';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';

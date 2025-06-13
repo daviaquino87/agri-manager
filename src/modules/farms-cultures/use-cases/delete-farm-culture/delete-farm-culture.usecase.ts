@@ -4,7 +4,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { FarmCultureRepository } from '../../repositories/farm-culture.repository';
+import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
 import { Prisma } from '@prisma/client';
 
 interface IExecuteInput {

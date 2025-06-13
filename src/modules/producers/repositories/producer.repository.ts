@@ -1,6 +1,9 @@
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { IProducer, ProducerWithRelations } from '../entities/producer.entity';
-import { GetProducersParamsDTO } from '../dtos/get-producers-params.dto';
+import {
+  IProducer,
+  ProducerWithRelations,
+} from '@/modules/producers/entities/producer.entity';
+import { GetProducersParamsDTO } from '@/modules/producers/dtos/get-producers-params.dto';
 
 export abstract class ProducerRepository {
   abstract create(createProducerDto: IProducer, txn?: any): Promise<IProducer>;

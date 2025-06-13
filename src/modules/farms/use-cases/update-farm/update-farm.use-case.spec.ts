@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { UpdateFarmUseCase } from './update-farm.use-case';
-import { FarmRepository } from '../../repositories/farm.repository';
+import { UpdateFarmUseCase } from '@/modules/farms/use-cases/update-farm/update-farm.use-case';
+import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
-import { UpdateFarmDTO } from '../../dtos/update-farm.dto';
+import { UpdateFarmDTO } from '@/modules/farms/dtos/update-farm.dto';
 import { Prisma } from '@prisma/client';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
 import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';

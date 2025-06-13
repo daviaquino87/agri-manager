@@ -3,8 +3,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { ICrop } from '../../entities/crop.entity';
-import { CropRepository } from '../../repositories/crop.repository';
+import { ICrop } from '@/modules/crops/entities/crop.entity';
+import { CropRepository } from '@/modules/crops/repositories/crop.repository';
 
 export interface IGetCropByIdInput {
   id: string;

@@ -1,6 +1,6 @@
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { IHarvest } from '../entities/harvest.entity';
-import { GetHarvestParamsDTO } from '../dtos/get-harvest-prams.dto';
+import { IHarvest } from '@/modules/harvests/entities/harvest.entity';
+import { GetHarvestParamsDTO } from '@/modules/harvests/dtos/get-harvest-prams.dto';
 
 export abstract class HarvestRepository {
   abstract findAll(

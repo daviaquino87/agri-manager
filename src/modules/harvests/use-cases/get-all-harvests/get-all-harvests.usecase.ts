@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { GetHarvestParamsDTO } from '../../dtos/get-harvest-prams.dto';
+import { GetHarvestParamsDTO } from '@/modules/harvests/dtos/get-harvest-prams.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { IHarvest } from '../../entities/harvest.entity';
-import { HarvestRepository } from '../../repositories/harvest.repository';
+import { IHarvest } from '@/modules/harvests/entities/harvest.entity';
+import { HarvestRepository } from '@/modules/harvests/repositories/harvest.repository';
 import { validateDTO } from '@/common/utils/validateDto';
 
 interface IExecuteInput {

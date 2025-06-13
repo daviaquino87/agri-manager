@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from '@/app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Logger } from '@nestjs/common';
 import { readFileSync } from 'fs';
-import { EnvService } from './infra/env/env.service';
+import { EnvService } from '@/infra/env/env.service';
 
 import {
   DocumentBuilder,

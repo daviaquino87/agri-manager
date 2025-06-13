@@ -3,11 +3,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { ProducerRepository } from '../../repositories/producer.repository';
-import {
-  IProducer,
-  ProducerWithRelations,
-} from '../../entities/producer.entity';
+import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
+import { ProducerWithRelations } from '@/modules/producers/entities/producer.entity';
 
 interface IExecuteInput {
   id: string;

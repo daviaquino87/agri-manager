@@ -4,10 +4,10 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { FarmRepository } from '../../repositories/farm.repository';
-import { IFarm } from '../../entities/farm.entity';
+import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
+import { IFarm } from '@/modules/farms/entities/farm.entity';
 import { validateDTO } from '@/common/utils/validateDto';
-import { UpdateFarmDTO } from '../../dtos/update-farm.dto';
+import { UpdateFarmDTO } from '@/modules/farms/dtos/update-farm.dto';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
 import { Prisma } from '@prisma/client';
 import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';

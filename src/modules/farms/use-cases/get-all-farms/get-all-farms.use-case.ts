@@ -1,7 +1,7 @@
-import { FarmRepository } from '../../repositories/farm.repository';
-import { IFarm } from '../../entities/farm.entity';
+import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
+import { IFarm } from '@/modules/farms/entities/farm.entity';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { GetFarmsParamsDTO } from '../../dtos/get-farms-params.dto';
+import { GetFarmsParamsDTO } from '@/modules/farms/dtos/get-farms-params.dto';
 import { validateDTO } from '@/common/utils/validateDto';
 import { BadRequestException, Injectable } from '@nestjs/common';
 

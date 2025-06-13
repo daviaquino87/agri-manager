@@ -1,7 +1,6 @@
-import { PrismaService } from '../prisma.service';
-import { GetHarvestParamsDTO } from '@/modules/harvests/dtos/get-harvest-prams.dto';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { createPaginator } from '../utils/prisma-paginate';
+import { createPaginator } from '@/infra/database/prisma/utils/prisma-paginate';
 import { Injectable } from '@nestjs/common';
 import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
 import { Prisma } from '@prisma/client';

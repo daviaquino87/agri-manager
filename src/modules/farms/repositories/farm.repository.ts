@@ -1,5 +1,5 @@
-import { IFarm } from '../entities/farm.entity';
-import { GetFarmsParamsDTO } from '../dtos/get-farms-params.dto';
+import { IFarm } from '@/modules/farms/entities/farm.entity';
+import { GetFarmsParamsDTO } from '@/modules/farms/dtos/get-farms-params.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 
 export abstract class FarmRepository {

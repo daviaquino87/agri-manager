@@ -1,4 +1,4 @@
-import { IFarm } from '../entities/farm.entity';
+import { IFarm } from '@/modules/farms/entities/farm.entity';
 
 export class FarmOutputDTO {
   id: string;
@@ -26,4 +26,4 @@ export class FarmOutputDTO {
       updatedAt: farm.updatedAt as Date,
     };
   }
-} 
+}

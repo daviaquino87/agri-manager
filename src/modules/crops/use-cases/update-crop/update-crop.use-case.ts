@@ -3,9 +3,9 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { ICrop } from '../../entities/crop.entity';
-import { CropRepository } from '../../repositories/crop.repository';
-import { UpdateCropDTO } from '../../dtos/update-crop.dto';
+import { ICrop } from '@/modules/crops/entities/crop.entity';
+import { CropRepository } from '@/modules/crops/repositories/crop.repository';
+import { UpdateCropDTO } from '@/modules/crops/dtos/update-crop.dto';
 import { validateDTO } from '@/common/utils/validateDto';
 
 export interface IUpdateCropInput {

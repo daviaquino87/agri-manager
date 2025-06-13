@@ -1,4 +1,4 @@
-import { IFarmCulture } from '../entities/farm-culture.entity';
+import { IFarmCulture } from '@/modules/farms-cultures/entities/farm-culture.entity';
 
 export class FarmCultureOutputDTO {
   id: string;

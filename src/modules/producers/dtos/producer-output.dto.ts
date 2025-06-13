@@ -1,4 +1,4 @@
-import { IProducer } from '../entities/producer.entity';
+import { IProducer } from '@/modules/producers/entities/producer.entity';
 
 export class ProducerOutputDTO {
   id: string;

@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
-import { getDashboardDataUseCase } from '../use-cases/get-dashboard-data/get-dashboard-data.usecase';
+import { getDashboardDataUseCase } from '@/modules/dashboard/use-cases/get-dashboard-data/get-dashboard-data.usecase';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { DashboardResponseDTO } from '../dtos/dashboard-response.dto';
+import { DashboardResponseDTO } from '@/modules/dashboard/dtos/dashboard-response.dto';
 
 @Controller('dashboard')
 export class DashboardController {

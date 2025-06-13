@@ -5,7 +5,7 @@ import {
   StateDistribution,
   CropDistribution,
   LandUseDistribution,
-} from '../../../../modules/dashbord/repositories/dashboard.repository';
+} from '@/modules/dashboard/repositories/dashboard.repository';
 
 @Injectable()
 export class PrismaDashboardRepository implements DashboardRepository {

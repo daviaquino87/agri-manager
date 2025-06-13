@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { GetFarmByIdUseCase } from './get-farm-by-id.use-case';
-import { FarmRepository } from '../../repositories/farm.repository';
+import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
-import { IFarm } from '../../entities/farm.entity';
+import { IFarm } from '@/modules/farms/entities/farm.entity';
 
 describe('GetFarmByIdUseCase', () => {
   let useCase: GetFarmByIdUseCase;

@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { GetProducerByIdUseCase } from './get-producer-by-id.usecase';
-import { ProducerRepository } from '../../repositories/producer.repository';
+import { GetProducerByIdUseCase } from '@/modules/producers/use-cases/get-producer-by-id/get-producer-by-id.usecase';
+import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('GetProducerByIdUseCase', () => {
@@ -22,7 +22,9 @@ describe('GetProducerByIdUseCase', () => {
       document: '12345678900',
     };
 
-    vi.spyOn(producerRepository, 'findById').mockResolvedValue(mockProducer);
+    vi.spyOn(producerRepository, 'findById').mockResolvedValue(
+      mockProducer as any,
+    );
 
     const result = await useCase.execute({ id: '123' });
 

@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { ProducerRepository } from '../../repositories/producer.repository';
-import { IProducer } from '../../entities/producer.entity';
+import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
+import { IProducer } from '@/modules/producers/entities/producer.entity';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 import { validateDTO } from '@/common/utils/validateDto';
-import { GetProducersParamsDTO } from '../../dtos/get-producers-params.dto';
+import { GetProducersParamsDTO } from '@/modules/producers/dtos/get-producers-params.dto';
 
 interface IExecuteInput {
   getProducersParamsDto: GetProducersParamsDTO;

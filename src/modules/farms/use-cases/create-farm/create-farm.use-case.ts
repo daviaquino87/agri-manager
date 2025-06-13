@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { FarmRepository } from '../../repositories/farm.repository';
-import { IFarm } from '../../entities/farm.entity';
+import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
+import { IFarm } from '@/modules/farms/entities/farm.entity';
 import { validateDTO } from '@/common/utils/validateDto';
-import { CreateFarmDTO } from '../../dtos/create-farm.dto';
+import { CreateFarmDTO } from '@/modules/farms/dtos/create-farm.dto';
 import { randomUUID } from 'crypto';
 import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
 

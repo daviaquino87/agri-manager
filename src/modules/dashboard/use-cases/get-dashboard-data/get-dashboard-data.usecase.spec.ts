@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { getDashboardDataUseCase } from './get-dashboard-data.usecase';
-import { DashboardRepository } from '../../repositories/dashboard.repository';
+import { getDashboardDataUseCase } from '@/modules/dashboard/use-cases/get-dashboard-data/get-dashboard-data.usecase';
+import { DashboardRepository } from '@/modules/dashboard/repositories/dashboard.repository';
 
 describe('getDashboardDataUseCase', () => {
   let useCase: getDashboardDataUseCase;
@@ -29,9 +29,15 @@ describe('getDashboardDataUseCase', () => {
     dashboardRepository = {
       getAmountFarms: vi.fn().mockResolvedValue(mockDashboardData.amountFarms),
       getSumOfTotalArea: vi.fn().mockResolvedValue(mockDashboardData.totalArea),
-      getStateDistribution: vi.fn().mockResolvedValue(mockDashboardData.stateDistribution),
-      getCropDistribution: vi.fn().mockResolvedValue(mockDashboardData.cropDistribution),
-      getLandUseDistribution: vi.fn().mockResolvedValue(mockDashboardData.landUseDistribution),
+      getStateDistribution: vi
+        .fn()
+        .mockResolvedValue(mockDashboardData.stateDistribution),
+      getCropDistribution: vi
+        .fn()
+        .mockResolvedValue(mockDashboardData.cropDistribution),
+      getLandUseDistribution: vi
+        .fn()
+        .mockResolvedValue(mockDashboardData.landUseDistribution),
     };
 
     useCase = new getDashboardDataUseCase(dashboardRepository);
@@ -57,11 +63,21 @@ describe('getDashboardDataUseCase', () => {
       landUseDistribution: [],
     };
 
-    vi.mocked(dashboardRepository.getAmountFarms).mockResolvedValueOnce(emptyData.amountFarms);
-    vi.mocked(dashboardRepository.getSumOfTotalArea).mockResolvedValueOnce(emptyData.totalArea);
-    vi.mocked(dashboardRepository.getStateDistribution).mockResolvedValueOnce(emptyData.stateDistribution);
-    vi.mocked(dashboardRepository.getCropDistribution).mockResolvedValueOnce(emptyData.cropDistribution);
-    vi.mocked(dashboardRepository.getLandUseDistribution).mockResolvedValueOnce(emptyData.landUseDistribution);
+    vi.mocked(dashboardRepository.getAmountFarms).mockResolvedValueOnce(
+      emptyData.amountFarms,
+    );
+    vi.mocked(dashboardRepository.getSumOfTotalArea).mockResolvedValueOnce(
+      emptyData.totalArea,
+    );
+    vi.mocked(dashboardRepository.getStateDistribution).mockResolvedValueOnce(
+      emptyData.stateDistribution,
+    );
+    vi.mocked(dashboardRepository.getCropDistribution).mockResolvedValueOnce(
+      emptyData.cropDistribution,
+    );
+    vi.mocked(dashboardRepository.getLandUseDistribution).mockResolvedValueOnce(
+      emptyData.landUseDistribution,
+    );
 
     const result = await useCase.execute();
 
@@ -74,4 +90,4 @@ describe('getDashboardDataUseCase', () => {
 
     await expect(useCase.execute()).rejects.toThrow('Database error');
   });
-}); 
+});

@@ -1,10 +1,10 @@
 import { IFarm } from '@/modules/farms/entities/farm.entity';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
 import { Prisma } from '@prisma/client';
 import { GetFarmsParamsDTO } from '@/modules/farms/dtos/get-farms-params.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { createPaginator } from '../utils/prisma-paginate';
+import { createPaginator } from '@/infra/database/prisma/utils/prisma-paginate';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

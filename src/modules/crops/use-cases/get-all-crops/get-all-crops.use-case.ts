@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { ICrop } from '../../entities/crop.entity';
-import { CropRepository } from '../../repositories/crop.repository';
-import { GetCropsParamsDTO } from '../../dtos/get-crops-params.dto';
+import { ICrop } from '@/modules/crops/entities/crop.entity';
+import { CropRepository } from '@/modules/crops/repositories/crop.repository';
+import { GetCropsParamsDTO } from '@/modules/crops/dtos/get-crops-params.dto';
 import { validateDTO } from '@/common/utils/validateDto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 

@@ -8,15 +8,15 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { CreateFarmUseCase } from '../use-cases/create-farm/create-farm.use-case';
-import { UpdateFarmUseCase } from '../use-cases/update-farm/update-farm.use-case';
-import { GetAllFarmsUseCase } from '../use-cases/get-all-farms/get-all-farms.use-case';
-import { GetFarmByIdUseCase } from '../use-cases/get-farm-by-id/get-farm-by-id.use-case';
-import { DeleteFarmUseCase } from '../use-cases/delete-farm/delete-farm.use-case';
-import { CreateFarmDTO } from '../dtos/create-farm.dto';
-import { UpdateFarmDTO } from '../dtos/update-farm.dto';
-import { GetFarmsParamsDTO } from '../dtos/get-farms-params.dto';
-import { FarmOutputDTO } from '../dtos/farm-output.dto';
+import { CreateFarmUseCase } from '@/modules/farms/use-cases/create-farm/create-farm.use-case';
+import { UpdateFarmUseCase } from '@/modules/farms/use-cases/update-farm/update-farm.use-case';
+import { GetAllFarmsUseCase } from '@/modules/farms/use-cases/get-all-farms/get-all-farms.use-case';
+import { GetFarmByIdUseCase } from '@/modules/farms/use-cases/get-farm-by-id/get-farm-by-id.use-case';
+import { DeleteFarmUseCase } from '@/modules/farms/use-cases/delete-farm/delete-farm.use-case';
+import { CreateFarmDTO } from '@/modules/farms/dtos/create-farm.dto';
+import { UpdateFarmDTO } from '@/modules/farms/dtos/update-farm.dto';
+import { GetFarmsParamsDTO } from '@/modules/farms/dtos/get-farms-params.dto';
+import { FarmOutputDTO } from '@/modules/farms/dtos/farm-output.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 import { ApiOperation } from '@nestjs/swagger';
 import { ApiPaginatedResponse } from '@/common/decorators/api-paginated-response.decorator';

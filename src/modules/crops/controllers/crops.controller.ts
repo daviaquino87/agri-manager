@@ -8,15 +8,15 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { CreateCropUseCase } from '../use-cases/create-crop/create-crop.use-case';
-import { UpdateCropUseCase } from '../use-cases/update-crop/update-crop.use-case';
-import { GetAllCropsUseCase } from '../use-cases/get-all-crops/get-all-crops.use-case';
-import { GetCropByIdUseCase } from '../use-cases/get-crop-by-id/get-crop-by-id.use-case';
-import { DeleteCropUseCase } from '../use-cases/delete-crop/delete-crop.use-case';
-import { CreateCropDTO } from '../dtos/create-crop.dto';
-import { UpdateCropDTO } from '../dtos/update-crop.dto';
-import { GetCropsParamsDTO } from '../dtos/get-crops-params.dto';
-import { CropOutputDTO } from '../dtos/crop-output.dto';
+import { CreateCropUseCase } from '@/modules/crops/use-cases/create-crop/create-crop.use-case';
+import { UpdateCropUseCase } from '@/modules/crops/use-cases/update-crop/update-crop.use-case';
+import { GetAllCropsUseCase } from '@/modules/crops/use-cases/get-all-crops/get-all-crops.use-case';
+import { GetCropByIdUseCase } from '@/modules/crops/use-cases/get-crop-by-id/get-crop-by-id.use-case';
+import { DeleteCropUseCase } from '@/modules/crops/use-cases/delete-crop/delete-crop.use-case';
+import { CreateCropDTO } from '@/modules/crops/dtos/create-crop.dto';
+import { UpdateCropDTO } from '@/modules/crops/dtos/update-crop.dto';
+import { GetCropsParamsDTO } from '@/modules/crops/dtos/get-crops-params.dto';
+import { CropOutputDTO } from '@/modules/crops/dtos/crop-output.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 import { ApiOperation } from '@nestjs/swagger';
 import { ApiPaginatedResponse } from '@/common/decorators/api-paginated-response.decorator';

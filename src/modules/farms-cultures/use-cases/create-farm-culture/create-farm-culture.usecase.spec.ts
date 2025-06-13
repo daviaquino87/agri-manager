@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { CreateFarmCultureUseCase } from './create-farm-culture.usecase';
-import { FarmCultureRepository } from '../../repositories/farm-culture.repository';
+import { CreateFarmCultureUseCase } from '@/modules/farms-cultures/use-cases/create-farm-culture/create-farm-culture.usecase';
+import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
 import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
 import { CropRepository } from '@/modules/crops/repositories/crop.repository';
 import { HarvestRepository } from '@/modules/harvests/repositories/harvest.repository';
@@ -65,9 +65,9 @@ describe('CreateFarmCultureUseCase', () => {
       createdAt: new Date(),
     };
 
-    vi.mocked(farmRepository.findById).mockResolvedValue(mockFarm);
-    vi.mocked(cropRepository.findById).mockResolvedValue(mockCrop);
-    vi.mocked(harvestRepository.findById).mockResolvedValue(mockHarvest);
+    vi.mocked(farmRepository.findById).mockResolvedValue(mockFarm as any);
+    vi.mocked(cropRepository.findById).mockResolvedValue(mockCrop as any);
+    vi.mocked(harvestRepository.findById).mockResolvedValue(mockHarvest as any);
     vi.mocked(farmCultureRepository.create).mockResolvedValue(mockFarmCulture);
 
     const result = await useCase.execute({ createFarmCultureDto });
@@ -92,9 +92,9 @@ describe('CreateFarmCultureUseCase', () => {
 
     vi.mocked(farmRepository.findById).mockResolvedValue(null);
 
-    await expect(
-      useCase.execute({ createFarmCultureDto }),
-    ).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute({ createFarmCultureDto })).rejects.toThrow(
+      BadRequestException,
+    );
   });
 
   it('should throw BadRequestException when crop is not found', async () => {
@@ -110,12 +110,12 @@ describe('CreateFarmCultureUseCase', () => {
 
     const mockFarm = { id: farmId };
 
-    vi.mocked(farmRepository.findById).mockResolvedValue(mockFarm);
+    vi.mocked(farmRepository.findById).mockResolvedValue(mockFarm as any);
     vi.mocked(cropRepository.findById).mockResolvedValue(null);
 
-    await expect(
-      useCase.execute({ createFarmCultureDto }),
-    ).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute({ createFarmCultureDto })).rejects.toThrow(
+      BadRequestException,
+    );
   });
 
   it('should throw BadRequestException when harvest is not found', async () => {
@@ -132,12 +132,12 @@ describe('CreateFarmCultureUseCase', () => {
     const mockFarm = { id: farmId };
     const mockCrop = { id: cropId };
 
-    vi.mocked(farmRepository.findById).mockResolvedValue(mockFarm);
-    vi.mocked(cropRepository.findById).mockResolvedValue(mockCrop);
+    vi.mocked(farmRepository.findById).mockResolvedValue(mockFarm as any);
+    vi.mocked(cropRepository.findById).mockResolvedValue(mockCrop as any);
     vi.mocked(harvestRepository.findById).mockResolvedValue(null);
 
-    await expect(
-      useCase.execute({ createFarmCultureDto }),
-    ).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute({ createFarmCultureDto })).rejects.toThrow(
+      BadRequestException,
+    );
   });
-}); 
+});

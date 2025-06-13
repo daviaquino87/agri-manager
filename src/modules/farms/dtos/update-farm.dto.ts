@@ -1,3 +1,3 @@
-import { CreateFarmDTO } from './create-farm.dto';
+import { CreateFarmDTO } from '@/modules/farms/dtos/create-farm.dto';
 
 export class UpdateFarmDTO extends CreateFarmDTO {}

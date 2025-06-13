@@ -4,7 +4,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CropRepository } from '../../repositories/crop.repository';
+import { CropRepository } from '@/modules/crops/repositories/crop.repository';
 import { Prisma } from '@prisma/client';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
 

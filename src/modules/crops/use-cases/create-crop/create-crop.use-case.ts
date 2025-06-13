@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { ICrop } from '../../entities/crop.entity';
-import { CropRepository } from '../../repositories/crop.repository';
-import { CreateCropDTO } from '../../dtos/create-crop.dto';
+import { ICrop } from '@/modules/crops/entities/crop.entity';
+import { CropRepository } from '@/modules/crops/repositories/crop.repository';
+import { CreateCropDTO } from '@/modules/crops/dtos/create-crop.dto';
 import { validateDTO } from '@/common/utils/validateDto';
 import { randomUUID } from 'crypto';
 

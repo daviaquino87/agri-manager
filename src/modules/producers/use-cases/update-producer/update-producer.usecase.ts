@@ -5,12 +5,12 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { UpdateProducerDTO } from '../../dtos/update-producer.dto';
-import { ProducerRepository } from '../../repositories/producer.repository';
+import { UpdateProducerDTO } from '@/modules/producers/dtos/update-producer.dto';
+import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
 import { validateDTO } from '@/common/utils/validateDto';
 import { Prisma } from '@prisma/client';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
-import { IProducer } from '../../entities/producer.entity';
+import { IProducer } from '@/modules/producers/entities/producer.entity';
 
 interface IExecuteInput {
   id: string;

@@ -4,13 +4,13 @@ import {
   HttpException,
   Injectable,
 } from '@nestjs/common';
-import { CreateProducerDTO } from '../../dtos/create-producer.dto';
-import { ProducerRepository } from '../../repositories/producer.repository';
+import { CreateProducerDTO } from '@/modules/producers/dtos/create-producer.dto';
+import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
 import { randomUUID } from 'node:crypto';
 import { validateDTO } from '@/common/utils/validateDto';
 import { Prisma } from '@prisma/client';
 import { PRISMA_ERRORS } from '@/common/constants/prisma-erros';
-import { IProducer } from '../../entities/producer.entity';
+import { IProducer } from '@/modules/producers/entities/producer.entity';
 
 interface IExecuteInput {
   createProducerDto: CreateProducerDTO;

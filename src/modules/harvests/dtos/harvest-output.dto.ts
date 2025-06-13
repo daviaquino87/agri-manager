@@ -1,4 +1,4 @@
-import { IHarvest } from '../entities/harvest.entity';
+import { IHarvest } from '@/modules/harvests/entities/harvest.entity';
 
 export class HarvestOutputDTO {
   id: string;

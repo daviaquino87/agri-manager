@@ -1,11 +1,11 @@
 import { ICrop } from '@/modules/crops/entities/crop.entity';
 import { CropRepository } from '@/modules/crops/repositories/crop.repository';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { GetCropsParamsDTO } from '@/modules/crops/dtos/get-crops-params.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { createPaginator } from '../utils/prisma-paginate';
+import { createPaginator } from '@/infra/database/prisma/utils/prisma-paginate';
 
 @Injectable()
 export class PrismaCropRepository implements CropRepository {

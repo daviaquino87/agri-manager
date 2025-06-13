@@ -3,8 +3,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { IHarvest } from '../../entities/harvest.entity';
-import { HarvestRepository } from '../../repositories/harvest.repository';
+import { IHarvest } from '@/modules/harvests/entities/harvest.entity';
+import { HarvestRepository } from '@/modules/harvests/repositories/harvest.repository';
 
 interface IExecuteInput {
   id: string;

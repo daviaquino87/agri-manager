@@ -1,7 +1,7 @@
 import { CropOutputDTO } from '@/modules/crops/dtos/crop-output.dto';
 import { FarmOutputDTO } from '@/modules/farms/dtos/farm-output.dto';
 import { HarvestOutputDTO } from '@/modules/harvests/dtos/harvest-output.dto';
-import { ProducerWithRelations } from '../entities/producer.entity';
+import { ProducerWithRelations } from '@/modules/producers/entities/producer.entity';
 import { ICrop } from '@/modules/crops/entities/crop.entity';
 import { IHarvest } from '@/modules/harvests/entities/harvest.entity';
 

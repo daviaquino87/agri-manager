@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { DashboardRepository } from '../../repositories/dashboard.repository';
-import { DashboardResponseDTO } from '../../dtos/dashboard-response.dto';
+import { DashboardRepository } from '@/modules/dashboard/repositories/dashboard.repository';
+import { DashboardResponseDTO } from '@/modules/dashboard/dtos/dashboard-response.dto';
 
 @Injectable()
 export class getDashboardDataUseCase {

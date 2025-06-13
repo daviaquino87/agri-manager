@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { UpdateFarmCultureUseCase } from './update-farm-culture.usecase';
-import { FarmCultureRepository } from '../../repositories/farm-culture.repository';
+import { UpdateFarmCultureUseCase } from '@/modules/farms-cultures/use-cases/update-farm-culture/update-farm-culture.usecase';
+import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
 import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
 import { CropRepository } from '@/modules/crops/repositories/crop.repository';
 import { HarvestRepository } from '@/modules/harvests/repositories/harvest.repository';
@@ -103,7 +103,10 @@ describe('UpdateFarmCultureUseCase', () => {
     expect(farmRepository.findById).toHaveBeenCalledWith(farmId);
     expect(cropRepository.findById).toHaveBeenCalledWith(cropId);
     expect(harvestRepository.findById).toHaveBeenCalledWith(harvestId);
-    expect(farmCultureRepository.update).toHaveBeenCalledWith(id, updateFarmCultureDto);
+    expect(farmCultureRepository.update).toHaveBeenCalledWith(
+      id,
+      updateFarmCultureDto,
+    );
   });
 
   it('should throw BadRequestException when farm is not found', async () => {
@@ -120,9 +123,9 @@ describe('UpdateFarmCultureUseCase', () => {
 
     vi.mocked(farmRepository.findById).mockResolvedValue(null);
 
-    await expect(
-      useCase.execute({ id, updateFarmCultureDto }),
-    ).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute({ id, updateFarmCultureDto })).rejects.toThrow(
+      BadRequestException,
+    );
   });
 
   it('should throw BadRequestException when crop is not found', async () => {
@@ -154,9 +157,9 @@ describe('UpdateFarmCultureUseCase', () => {
     vi.mocked(farmRepository.findById).mockResolvedValue(mockFarm);
     vi.mocked(cropRepository.findById).mockResolvedValue(null);
 
-    await expect(
-      useCase.execute({ id, updateFarmCultureDto }),
-    ).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute({ id, updateFarmCultureDto })).rejects.toThrow(
+      BadRequestException,
+    );
   });
 
   it('should throw BadRequestException when harvest is not found', async () => {
@@ -196,9 +199,9 @@ describe('UpdateFarmCultureUseCase', () => {
     vi.mocked(cropRepository.findById).mockResolvedValue(mockCrop);
     vi.mocked(harvestRepository.findById).mockResolvedValue(null);
 
-    await expect(
-      useCase.execute({ id, updateFarmCultureDto }),
-    ).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute({ id, updateFarmCultureDto })).rejects.toThrow(
+      BadRequestException,
+    );
   });
 
   it('should throw NotFoundException when farm culture is not found', async () => {
@@ -251,8 +254,8 @@ describe('UpdateFarmCultureUseCase', () => {
       }),
     );
 
-    await expect(
-      useCase.execute({ id, updateFarmCultureDto }),
-    ).rejects.toThrow(NotFoundException);
+    await expect(useCase.execute({ id, updateFarmCultureDto })).rejects.toThrow(
+      NotFoundException,
+    );
   });
-}); 
+});

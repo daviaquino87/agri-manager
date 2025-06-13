@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { GetAllFarmsCulturesUseCase } from './get-all-farms-cultures.usecase';
-import { FarmCultureRepository } from '../../repositories/farm-culture.repository';
+import { GetAllFarmsCulturesUseCase } from '@/modules/farms-cultures/use-cases/get-all-farms-cultures/get-all-farms-cultures.usecase';
+import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
 import { BadRequestException } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 

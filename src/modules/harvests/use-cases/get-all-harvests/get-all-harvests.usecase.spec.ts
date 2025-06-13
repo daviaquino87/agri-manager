@@ -1,22 +1,22 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { GetAllHarvestsUseCase } from './get-all-harvests.usecase'
-import { HarvestRepository } from '../../repositories/harvest.repository'
-import { BadRequestException } from '@nestjs/common'
-import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto'
-import { IHarvest } from '../../entities/harvest.entity'
-import * as validateDtoModule from '@/common/utils/validateDto'
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { GetAllHarvestsUseCase } from '@/modules/harvests/use-cases/get-all-harvests/get-all-harvests.usecase';
+import { HarvestRepository } from '@/modules/harvests/repositories/harvest.repository';
+import { BadRequestException } from '@nestjs/common';
+import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
+import { IHarvest } from '@/modules/harvests/entities/harvest.entity';
+import * as validateDtoModule from '@/common/utils/validateDto';
 
 describe('GetAllHarvestsUseCase', () => {
-  let useCase: GetAllHarvestsUseCase
-  let harvestRepository: HarvestRepository
+  let useCase: GetAllHarvestsUseCase;
+  let harvestRepository: HarvestRepository;
 
   beforeEach(() => {
     harvestRepository = {
       findAll: vi.fn(),
-    } as any
+    } as any;
 
-    useCase = new GetAllHarvestsUseCase(harvestRepository)
-  })
+    useCase = new GetAllHarvestsUseCase(harvestRepository);
+  });
 
   it('should get all harvests successfully', async () => {
     const mockPaginatedData: PaginatedOutputDTO<IHarvest> = {
@@ -38,44 +38,49 @@ describe('GetAllHarvestsUseCase', () => {
         prev: null,
         next: null,
       },
-    }
+    };
 
     const getHarvestsParamsDto = {
       page: 1,
       perPage: 10,
-    }
+    };
 
-    vi.spyOn(harvestRepository, 'findAll').mockResolvedValue(mockPaginatedData)
+    vi.spyOn(harvestRepository, 'findAll').mockResolvedValue(mockPaginatedData);
 
-    const result = await useCase.execute({ getHarvestsParamsDto })
+    const result = await useCase.execute({ getHarvestsParamsDto });
 
-    expect(result.data).toEqual(mockPaginatedData)
-    expect(harvestRepository.findAll).toHaveBeenCalledWith(getHarvestsParamsDto)
-  })
+    expect(result.data).toEqual(mockPaginatedData);
+    expect(harvestRepository.findAll).toHaveBeenCalledWith(
+      getHarvestsParamsDto,
+    );
+  });
 
   it('should throw BadRequestException when DTO validation fails', async () => {
     const getHarvestsParamsDto = {
       page: -1,
       perPage: 0,
-    }
+    };
 
-    vi.spyOn(validateDtoModule, 'validateDTO').mockResolvedValue({ dtoValidated: null, error: 'validation error' })
+    vi.spyOn(validateDtoModule, 'validateDTO').mockResolvedValue({
+      dtoValidated: null,
+      error: 'validation error',
+    });
 
     await expect(useCase.execute({ getHarvestsParamsDto })).rejects.toThrow(
       BadRequestException,
-    )
-  })
+    );
+  });
 
   it('should throw BadRequestException for other errors', async () => {
     const getHarvestsParamsDto = {
       page: 1,
       perPage: 10,
-    }
+    };
 
-    vi.spyOn(harvestRepository, 'findAll').mockRejectedValue(new Error())
+    vi.spyOn(harvestRepository, 'findAll').mockRejectedValue(new Error());
 
     await expect(useCase.execute({ getHarvestsParamsDto })).rejects.toThrow(
       BadRequestException,
-    )
-  })
-}) 
+    );
+  });
+});

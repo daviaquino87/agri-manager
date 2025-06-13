@@ -1,14 +1,13 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { GetAllFarmsUseCase } from './get-all-farms.use-case'
-import { FarmRepository } from '../../repositories/farm.repository'
-import { BadRequestException } from '@nestjs/common'
-import { GetFarmsParamsDTO } from '../../dtos/get-farms-params.dto'
-import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto'
-import { IFarm } from '../../entities/farm.entity'
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { GetAllFarmsUseCase } from '@/modules/farms/use-cases/get-all-farms/get-all-farms.use-case';
+import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
+import { GetFarmsParamsDTO } from '@/modules/farms/dtos/get-farms-params.dto';
+import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
+import { IFarm } from '@/modules/farms/entities/farm.entity';
 
 describe('GetAllFarmsUseCase', () => {
-  let useCase: GetAllFarmsUseCase
-  let farmRepository: FarmRepository
+  let useCase: GetAllFarmsUseCase;
+  let farmRepository: FarmRepository;
 
   const mockFarms: IFarm[] = [
     {
@@ -35,7 +34,7 @@ describe('GetAllFarmsUseCase', () => {
       createdAt: new Date(),
       updatedAt: new Date(),
     },
-  ]
+  ];
 
   const mockPaginatedOutput: PaginatedOutputDTO<IFarm> = {
     data: mockFarms,
@@ -47,45 +46,45 @@ describe('GetAllFarmsUseCase', () => {
       prev: null,
       next: null,
     },
-  }
+  };
 
   beforeEach(() => {
     farmRepository = {
       findAll: vi.fn(),
-    } as any
+    } as any;
 
-    useCase = new GetAllFarmsUseCase(farmRepository)
-  })
+    useCase = new GetAllFarmsUseCase(farmRepository);
+  });
 
   it('should be defined', () => {
-    expect(useCase).toBeDefined()
-  })
+    expect(useCase).toBeDefined();
+  });
 
   it('should get all farms successfully', async () => {
     const getAllFarmsParams: GetFarmsParamsDTO = {
       page: 1,
       perPage: 10,
-    }
+    };
 
-    vi.spyOn(farmRepository, 'findAll').mockResolvedValue(mockPaginatedOutput)
+    vi.spyOn(farmRepository, 'findAll').mockResolvedValue(mockPaginatedOutput);
 
-    const result = await useCase.execute({ getAllFarmsParams })
+    const result = await useCase.execute({ getAllFarmsParams });
 
-    expect(result.data).toEqual(mockPaginatedOutput)
+    expect(result.data).toEqual(mockPaginatedOutput);
     expect(farmRepository.findAll).toHaveBeenCalledWith({
       page: getAllFarmsParams.page,
       perPage: getAllFarmsParams.perPage,
-    })
-  })
+    });
+  });
 
   it('should throw BadRequestException when DTO validation fails', async () => {
     const getAllFarmsParams = {
       page: -1,
       perPage: 10,
-    }
+    };
 
-    const result = await useCase.execute({ getAllFarmsParams })
+    const result = await useCase.execute({ getAllFarmsParams });
 
-    expect(result).toEqual({ data: undefined })
-  })
-}) 
+    expect(result).toEqual({ data: undefined });
+  });
+});

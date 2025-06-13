@@ -4,11 +4,11 @@ import {
 } from '@/modules/producers/entities/producer.entity';
 import { ProducerRepository } from '@/modules/producers/repositories/producer.repository';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { GetProducersParamsDTO } from '@/modules/producers/dtos/get-producers-params.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { createPaginator } from '../utils/prisma-paginate';
+import { createPaginator } from '@/infra/database/prisma/utils/prisma-paginate';
 
 @Injectable()
 export class PrismaProducerRepository implements ProducerRepository {

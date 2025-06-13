@@ -1,10 +1,10 @@
 import { IHarvest } from '@/modules/harvests/entities/harvest.entity';
 import { HarvestRepository } from '@/modules/harvests/repositories/harvest.repository';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { GetHarvestParamsDTO } from '@/modules/harvests/dtos/get-harvest-prams.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { createPaginator } from '../utils/prisma-paginate';
+import { createPaginator } from '@/infra/database/prisma/utils/prisma-paginate';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { ICrop } from '../entities/crop.entity';
+import { ICrop } from '@/modules/crops/entities/crop.entity';
 
 export class CropOutputDTO {
   id: string;
@@ -14,4 +14,4 @@ export class CropOutputDTO {
     dto.updatedAt = crop.updatedAt;
     return dto;
   }
-} 
+}

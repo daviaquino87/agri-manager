@@ -3,8 +3,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { FarmRepository } from '../../repositories/farm.repository';
-import { IFarm } from '../../entities/farm.entity';
+import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
+import { IFarm } from '@/modules/farms/entities/farm.entity';
 
 interface IExecuteInput {
   id: string;

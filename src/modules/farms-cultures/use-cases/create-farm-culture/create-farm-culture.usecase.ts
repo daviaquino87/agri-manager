@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateFarmCultureDTO } from '../../dtos/create-farm-culture.dto';
-import { IFarmCulture } from '../../entities/farm-culture.entity';
+import { CreateFarmCultureDTO } from '@/modules/farms-cultures/dtos/create-farm-culture.dto';
+import { IFarmCulture } from '@/modules/farms-cultures/entities/farm-culture.entity';
 import { validateDTO } from '@/common/utils/validateDto';
-import { FarmCultureRepository } from '../../repositories/farm-culture.repository';
+import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
 import { FarmRepository } from '@/modules/farms/repositories/farm.repository';
 import { CropRepository } from '@/modules/crops/repositories/crop.repository';
 import { HarvestRepository } from '@/modules/harvests/repositories/harvest.repository';

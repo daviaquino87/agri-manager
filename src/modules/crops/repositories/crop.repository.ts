@@ -1,6 +1,6 @@
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { ICrop } from '../entities/crop.entity';
-import { GetCropsParamsDTO } from '../dtos/get-crops-params.dto';
+import { ICrop } from '@/modules/crops/entities/crop.entity';
+import { GetCropsParamsDTO } from '@/modules/crops/dtos/get-crops-params.dto';
 
 export abstract class CropRepository {
   abstract create(data: ICrop, txn?: any): Promise<ICrop>;

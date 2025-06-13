@@ -9,15 +9,15 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
-import { CreateFarmCultureUseCase } from '../use-cases/create-farm-culture/create-farm-culture.usecase';
-import { UpdateFarmCultureUseCase } from '../use-cases/update-farm-culture/update-farm-culture.usecase';
-import { GetAllFarmsCulturesUseCase } from '../use-cases/get-all-farms-cultures/get-all-farms-cultures.usecase';
-import { GetFarmCultureByIdUseCase } from '../use-cases/get-farm-culture-by-id/get-farm-culture-by-id.usecase';
-import { DeleteFarmCultureUseCase } from '../use-cases/delete-farm-culture/delete-farm-culture.usecase';
-import { CreateFarmCultureDTO } from '../dtos/create-farm-culture.dto';
-import { UpdateFarmCultureDTO } from '../dtos/update-farm-culture.dto';
-import { FarmCultureOutputDTO } from '../dtos/farm-culture-output.dto';
-import { GetAllFarmsCulturesDTO } from '../dtos/get-all-farms-cultures.dto';
+import { CreateFarmCultureUseCase } from '@/modules/farms-cultures/use-cases/create-farm-culture/create-farm-culture.usecase';
+import { UpdateFarmCultureUseCase } from '@/modules/farms-cultures/use-cases/update-farm-culture/update-farm-culture.usecase';
+import { GetAllFarmsCulturesUseCase } from '@/modules/farms-cultures/use-cases/get-all-farms-cultures/get-all-farms-cultures.usecase';
+import { GetFarmCultureByIdUseCase } from '@/modules/farms-cultures/use-cases/get-farm-culture-by-id/get-farm-culture-by-id.usecase';
+import { DeleteFarmCultureUseCase } from '@/modules/farms-cultures/use-cases/delete-farm-culture/delete-farm-culture.usecase';
+import { CreateFarmCultureDTO } from '@/modules/farms-cultures/dtos/create-farm-culture.dto';
+import { UpdateFarmCultureDTO } from '@/modules/farms-cultures/dtos/update-farm-culture.dto';
+import { FarmCultureOutputDTO } from '@/modules/farms-cultures/dtos/farm-culture-output.dto';
+import { GetAllFarmsCulturesDTO } from '@/modules/farms-cultures/dtos/get-all-farms-cultures.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 import { ApiPaginatedResponse } from '@/common/decorators/api-paginated-response.decorator';
 

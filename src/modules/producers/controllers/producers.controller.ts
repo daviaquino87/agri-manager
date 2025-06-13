@@ -9,18 +9,18 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateProducerUseCase } from '../use-cases/create-producer/create-producer.usecase';
-import { CreateProducerDTO } from '../dtos/create-producer.dto';
+import { CreateProducerDTO } from '@/modules/producers/dtos/create-producer.dto';
 import { ApiOperation } from '@nestjs/swagger';
-import { UpdateProducerDTO } from '../dtos/update-producer.dto';
-import { UpdateProducerUseCase } from '../use-cases/update-producer/update-producer.usecase';
-import { GetAllProducersUseCase } from '../use-cases/get-all-producers/get-all-producers.usecase';
-import { ProducerOutputDTO } from '../dtos/producer-output.dto';
-import { GetProducersParamsDTO } from '../dtos/get-producers-params.dto';
+import { UpdateProducerDTO } from '@/modules/producers/dtos/update-producer.dto';
+import { UpdateProducerUseCase } from '@/modules/producers/use-cases/update-producer/update-producer.usecase';
+import { GetAllProducersUseCase } from '@/modules/producers/use-cases/get-all-producers/get-all-producers.usecase';
+import { ProducerOutputDTO } from '@/modules/producers/dtos/producer-output.dto';
+import { GetProducersParamsDTO } from '@/modules/producers/dtos/get-producers-params.dto';
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
 import { ApiPaginatedResponse } from '@/common/decorators/api-paginated-response.decorator';
-import { GetProducerByIdUseCase } from '../use-cases/get-producer-by-id/get-producer-by-id.usecase';
-import { DeleteProducerUseCase } from '../use-cases/delete-producer/delete-producer.usecase';
-import { ProducerDetailsOutputDTO } from '../dtos/producer-details.output.dto';
+import { GetProducerByIdUseCase } from '@/modules/producers/use-cases/get-producer-by-id/get-producer-by-id.usecase';
+import { DeleteProducerUseCase } from '@/modules/producers/use-cases/delete-producer/delete-producer.usecase';
+import { ProducerDetailsOutputDTO } from '@/modules/producers/dtos/producer-details.output.dto';
 
 @Controller('producers')
 export class ProducersController {

@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { DeleteFarmCultureUseCase } from './delete-farm-culture.usecase';
-import { FarmCultureRepository } from '../../repositories/farm-culture.repository';
+import { DeleteFarmCultureUseCase } from '@/modules/farms-cultures/use-cases/delete-farm-culture/delete-farm-culture.usecase';
+import { FarmCultureRepository } from '@/modules/farms-cultures/repositories/farm-culture.repository';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { Prisma } from '@prisma/client';
@@ -32,7 +32,9 @@ describe('DeleteFarmCultureUseCase', () => {
   });
 
   it('should throw BadRequestException when id is not provided', async () => {
-    await expect(useCase.execute({ id: '' })).rejects.toThrow(BadRequestException);
+    await expect(useCase.execute({ id: '' })).rejects.toThrow(
+      BadRequestException,
+    );
     expect(farmCultureRepository.delete).not.toHaveBeenCalled();
   });
 
@@ -49,4 +51,4 @@ describe('DeleteFarmCultureUseCase', () => {
     await expect(useCase.execute({ id })).rejects.toThrow(NotFoundException);
     expect(farmCultureRepository.delete).toHaveBeenCalledWith(id);
   });
-}); 
+});

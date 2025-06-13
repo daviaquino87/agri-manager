@@ -1,6 +1,6 @@
 import { PaginatedOutputDTO } from '@/common/dtos/paginated.dto';
-import { IFarmCulture } from '../entities/farm-culture.entity';
-import { GetAllFarmsCulturesDTO } from '../dtos/get-all-farms-cultures.dto';
+import { IFarmCulture } from '@/modules/farms-cultures/entities/farm-culture.entity';
+import { GetAllFarmsCulturesDTO } from '@/modules/farms-cultures/dtos/get-all-farms-cultures.dto';
 
 export abstract class FarmCultureRepository {
   abstract create(data: IFarmCulture): Promise<IFarmCulture>;
