@@ -2,26 +2,38 @@ version: '3.7'
 
 volumes:
   agri-manager-db-data:
-    driver: local
+  delta-storage-data:
 
 networks:
   agri-manager-network:
 
-services: 
- agri-manager-db:    
-    container_name: agri-manager-db 
-    image: bitnami/postgresql
+services:
+  agri-manager-api:
+    container_name: agri-manager-api
+    build: .
+    user: node
+    env_file:
+      - .env
+    volumes:
+      - ./:/home/node/app
+      - delta-storage-data:/home/node/storage
     networks:
       - agri-manager-network
+    ports:
+      - '3000:3000'
+      - '5555:5555'
+    entrypoint: sh ./.docker/entrypoint.sh
+
+  agri-manager-db:
+    container_name: agri-manager-db
+    image: bitnami/postgresql
+    environment:
+      POSTGRESQL_USERNAME: agri_manager_user
+      POSTGRESQL_PASSWORD: agri_manager_pass
+      POSTGRESQL_DATABASE: agri_manager
     volumes:
       - agri-manager-db-data:/bitnami/postgresql
+    networks:
+      - agri-manager-network
     ports:
-      - 5432:5432
-    environment:
-      - POSTGRESQL_USERNAME=agri_manager_user
-      - POSTGRESQL_PASSWORD=agri_manager_pass
-      - POSTGRESQL_DATABASE=agri_manager
-
-  
-
-  
+      - '5432:5432'

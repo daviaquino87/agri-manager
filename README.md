@@ -32,41 +32,22 @@ flowchart LR
 
 ## 🛠️ Pré-requisitos
 
-- Node.js (versão LTS recomendada)
 - Docker e Docker Compose
-- PostgreSQL (se rodando localmente)
 
-## 🚀 Instalação
-
-1. Clone o repositório:
+## Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/agri-manager.git
+git clone https://github.com/daviaquino87/agri-manager.git
 cd agri-manager
 ```
 
-2. Instale as dependências:
-```bash
-npm install
+### Rodar aplicação e banco de dados
+```=shell
+docker-compose up -d 
 ```
 
-3. Configure as variáveis de ambiente:
-```bash
-cp .env.example .env
-```
-
-4. Inicie o banco de dados com Docker:
-```bash
-docker-compose up -d
-```
-
-5. Execute as migrações do Prisma:
-```bash
-npx prisma migrate dev
-```
-
-6. Inicie o servidor de desenvolvimento:
-```bash
-npm run start:dev
+### Rodar migrations
+```=shell
+docker exec -it agri-manager-api npx prisma migrate dev
 ```
 
 ## 📚 Documentação da API
