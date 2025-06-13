@@ -35,7 +35,7 @@ describe('CreateFarmUseCase', () => {
       totalAreaInHectares: 100,
       agricultureAreaInHectares: 60,
       vegetationAreaInHectares: 40,
-      producerId: '123e4567-e89b-12d3-a456-426614174001',
+      producerId: '550e8400-e29b-41d4-a716-446655440000',
     }
 
     const createFarmDto = new CreateFarmDTO()
@@ -46,10 +46,10 @@ describe('CreateFarmUseCase', () => {
     createFarmDto.totalAreaInHectares = 100
     createFarmDto.agricultureAreaInHectares = 60
     createFarmDto.vegetationAreaInHectares = 40
-    createFarmDto.producerId = '123e4567-e89b-12d3-a456-426614174001'
+    createFarmDto.producerId = '550e8400-e29b-41d4-a716-446655440000'
 
     vi.spyOn(producerRepository, 'findById').mockResolvedValue({
-      id: '123e4567-e89b-12d3-a456-426614174001',
+      id: '550e8400-e29b-41d4-a716-446655440000',
       name: 'Producer 1',
       document: '12345678900',
     })
@@ -70,7 +70,7 @@ describe('CreateFarmUseCase', () => {
     createFarmDto.totalAreaInHectares = 100
     createFarmDto.agricultureAreaInHectares = 60
     createFarmDto.vegetationAreaInHectares = 50
-    createFarmDto.producerId = '123e4567-e89b-12d3-a456-426614174001'
+    createFarmDto.producerId = '550e8400-e29b-41d4-a716-446655440000'
 
     await expect(useCase.execute({ createFarmDto })).rejects.toThrow(
       BadRequestException,
@@ -85,7 +85,7 @@ describe('CreateFarmUseCase', () => {
     createFarmDto.totalAreaInHectares = 100
     createFarmDto.agricultureAreaInHectares = 60
     createFarmDto.vegetationAreaInHectares = 40
-    createFarmDto.producerId = '123e4567-e89b-12d3-a456-426614174001'
+    createFarmDto.producerId = '550e8400-e29b-41d4-a716-446655440000'
 
     vi.spyOn(producerRepository, 'findById').mockResolvedValue(null)
 
