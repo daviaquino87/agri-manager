@@ -20,19 +20,26 @@ export class GetAllHarvestsUseCase {
   async execute({
     getHarvestsParamsDto,
   }: IExecuteInput): Promise<IExecuteOutput> {
-    const { dtoValidated, error } = await validateDTO(
-      GetHarvestParamsDTO,
-      getHarvestsParamsDto,
-    );
+    try {
+      const { dtoValidated, error } = await validateDTO(
+        GetHarvestParamsDTO,
+        getHarvestsParamsDto,
+      );
 
-    if (error) {
-      throw new BadRequestException(error);
+      if (error) {
+        throw new BadRequestException(error);
+      }
+
+      const data = await this.harvestRepository.findAll(dtoValidated!);
+
+      return {
+        data,
+      };
+    } catch (error) {
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
+      throw new BadRequestException('erro ao buscar colheitas');
     }
-
-    const data = await this.harvestRepository.findAll(dtoValidated!);
-
-    return {
-      data,
-    };
   }
 }

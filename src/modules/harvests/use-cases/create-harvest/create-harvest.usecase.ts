@@ -18,20 +18,27 @@ export class CreateHarvestUseCase {
   constructor(private readonly harvestRepository: HarvestRepository) {}
 
   async execute({ createHarvestDto }: IExecuteInput): Promise<IExecuteOutput> {
-    const { dtoValidated, error } = await validateDTO(
-      CreateHarvestDTO,
-      createHarvestDto,
-    );
+    try {
+      const { dtoValidated, error } = await validateDTO(
+        CreateHarvestDTO,
+        createHarvestDto,
+      );
 
-    if (error) {
-      throw new BadRequestException(error);
+      if (error) {
+        throw new BadRequestException(error);
+      }
+
+      const harvest = await this.harvestRepository.create({
+        id: randomUUID(),
+        year: dtoValidated!.year,
+      });
+
+      return { harvest };
+    } catch (error) {
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
+      throw new BadRequestException('erro ao criar colheita');
     }
-
-    const harvest = await this.harvestRepository.create({
-      id: randomUUID(),
-      year: dtoValidated!.year,
-    });
-
-    return { harvest };
   }
 }
