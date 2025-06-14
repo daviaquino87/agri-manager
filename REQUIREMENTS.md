@@ -33,8 +33,6 @@
 [x] - RNF07	A API deve expor mensagens de erro amigáveis e padronizadas, com status HTTP apropriados.
 [x] - RNF08	As requisições e respostas devem seguir um contrato claro (DTOs) e, preferencialmente, utilizar validação com decorators (class-validator).
 [x] - RNF09	As operações devem ser idempotentes onde aplicável (ex: PUT e DELETE).
-[] - RNF10	A aplicação deve incluir métricas básicas de observabilidade, como logs, erros e tempos de resposta.
-[] - RNF11	A aplicação deve ser documentada com README, e conter instruções de execução local, testes e deploy.
-[] - RNF12	O sistema deve permitir carga de dados em larga escala sem perda de performance, principalmente nos endpoints de dashboard e listagem.
-[x] - RNF13	As rotas devem ser versionadas (/api/v1/) para garantir estabilidade em futuras atualizações.
+[x] - RNF10	A aplicação deve ser documentada com README, e conter instruções de execução local, testes e deploy.
+[x] - RNF11	As rotas devem ser versionadas (/api/v1/) para garantir estabilidade em futuras atualizações.
 
