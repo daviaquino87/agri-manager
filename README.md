@@ -51,7 +51,7 @@ cp ./.env.example ./.env
 
 ### Rodar aplicação e banco de dados
 ```=shell
-docker-compose up -d 
+docker compose up -d 
 ```
 
 ### Rodar migrations
