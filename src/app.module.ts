@@ -9,6 +9,7 @@ import { CropsModule } from '@/modules/crops/crops.module';
 import { HarvestsModule } from '@/modules/harvests/harvests.modulo';
 import { FarmsCulturesModule } from '@/modules/farms-cultures/farms-cultures.module';
 import { DashboardModule } from '@/modules/dashboard/dashboard.module';
+import { HealthCheckModule } from './modules/health-check/health-check.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { DashboardModule } from '@/modules/dashboard/dashboard.module';
     CropsModule,
     HarvestsModule,
     FarmsCulturesModule,
+    HealthCheckModule
   ],
   controllers: [],
   providers: [],

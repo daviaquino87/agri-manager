@@ -34,38 +34,73 @@ flowchart LR
 
 - Docker e Docker Compose
 
+## Índice
+- [Instruções de Setup](#instruções-de-setup)
+- [Arquitetura e Decisões Técnicas](#arquitetura-e-decisões-técnicas)
+- [Fluxos de Negócio](#fluxos-de-negócio)
+- [Regras de Validação](#regras-de-validação)
+- [OpenAPI/Swagger](#openapiswagger)
 
-### 🎲 Rodando o Backend
+## Instruções de Setup
+
+### Setup Local
+
+1. Clone o repositório:
+    ```bash
+    git clone https://github.com/daviaquino87/agri-manager.git
+    cd agri-manager
+    ```
+2. Criar o arquivo .env e copiar as variáveis do .env.example
+
+    ```bash
+      cp ./.env.example ./.env
+    ```
+3. Rodar aplicação e banco de dados
+    ```=bash
+      docker compose up -d 
+    ```
+4. Rodar migrations
+    ```=bash
+      docker exec -it agri-manager-api npx prisma migrate dev
+    ```
+
+## Arquitetura e Decisões Técnicas
+
+- **Camada de Apresentação (API):** FastAPI, responsável por receber e responder requisições HTTP.
+- **Camada de Serviço:** Contém as regras de negócio e validações.
+- **Camada de Persistência:** Prisma para ORM, com PostgreSQL como banco de dados.
+- **Testes:** Vitest para testes unitários e integrados.
+
+### Decisões Técnicas
+- Utilização de FastAPI pela performance e facilidade de documentação automática.
+- Docker para facilitar o deploy e padronizar ambientes.
+- Prisma para abstração do banco de dados e facilidade de manutenção.
+
+## Fluxos de Negócio
+
+### Cadastro de Produtor
+1. Usuário envia dados do produtor e propriedades.
+2. API valida CPF/CNPJ e áreas.
+3. Dados são persistidos no banco.
+4. Retorna confirmação e dados cadastrados.
+
+### Dashboard
+1. Usuário acessa endpoint `/dashboard`.
+2. API retorna totais e dados agregados para gráficos.
+
+## Regras de Validação
+
+- **CPF/CNPJ:** Validação de formato e dígitos verificadores.
+- **Áreas:** Soma de área agricultável + vegetação não pode exceder área total da fazenda.
+- **Culturas:** Cada cultura deve estar associada a uma safra e propriedade.
 
 
-## Clone o repositório:
-```bash
-git clone https://github.com/daviaquino87/agri-manager.git
-cd agri-manager
-```
+## OpenAPI/Swagger
 
-## Criar o arquivo .env e copiar as variáveis do .env.example
-```=shell
-cp ./.env.example ./.env
-```
+Acesse a documentação interativa em: `http://localhost:8000/docs`
 
-### Rodar aplicação e banco de dados
-```=shell
-docker compose up -d 
-```
+Ou utilize o arquivo de especificação OpenAPI disponível em `/openapi.json`.
 
-### Rodar migrations
-```=shell
-docker exec -it agri-manager-api npx prisma migrate dev
-```
-
-## 📚 Documentação da API
-
-A documentação completa da API está disponível através do Swagger UI quando o servidor estiver rodando:
-
-```
-http://localhost:3000/docs
-```
 
 ## 🧪 Testes
 
@@ -74,7 +109,6 @@ Para executar os testes:
 ```bash
 # Testes unitários
 npm run test
-
 
 ## 🏗️ Arquitetura
 
